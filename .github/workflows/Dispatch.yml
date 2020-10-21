@@ -1,0 +1,42 @@
+name: Workflow Dispatch
+
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: 'branch | tag | commit SHA'
+        required: true
+        default: master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.inputs.ref }}
+
+      - uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Build
+        run: ./gradlew assembleDebug
+
+      - name: Find APK
+        id: find-apk
+        run: |
+          path=$(find **/build/outputs/apk -name '*.apk' -type f | head -1)
+          echo "::set-output name=path::$path"
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v2
+        with:
+          name: apk
+          path: ${{ steps.find-apk.outputs.path }}
