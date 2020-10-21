@@ -1,0 +1,27 @@
+package net.aridai.simpleqiitaclient
+
+import android.app.Application
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
+import org.koin.core.qualifier.named
+import org.koin.dsl.module
+import timber.log.Timber
+
+internal class MyApp : Application() {
+    override fun onCreate() {
+        super.onCreate()
+
+        Timber.plant(Timber.DebugTree())
+
+        startKoin {
+            androidContext(this@MyApp)
+            modules(
+                module {
+                    single(named("DEBUG")) { BuildConfig.DEBUG }
+                    single(named("VERSION_CODE")) { BuildConfig.VERSION_CODE }
+                    single(named("VERSION_NAME")) { BuildConfig.VERSION_NAME }
+                }
+            )
+        }
+    }
+}
