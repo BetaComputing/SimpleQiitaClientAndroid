@@ -15,6 +15,7 @@
             <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/modules/application" />
             <option value="$PROJECT_DIR$/modules/common" />
+            <option value="$PROJECT_DIR$/modules/data" />
             <option value="$PROJECT_DIR$/modules/ui" />
           </set>
         </option>

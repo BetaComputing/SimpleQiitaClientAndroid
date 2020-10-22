@@ -89,6 +89,28 @@ object Dependencies {
         const val viewModel = "org.koin:koin-androidx-viewmodel:$version"
     }
 
+    //  https://mvnrepository.com/artifact/com.squareup.moshi
+    object Moshi {
+        private const val version = "1.11.0"
+
+        //  https://mvnrepository.com/artifact/com.squareup.moshi/moshi-adapters
+        const val adapters = "com.squareup.moshi:moshi-adapters:$version"
+
+        //  https://mvnrepository.com/artifact/com.squareup.moshi/moshi-kotlin
+        const val kotlin = "com.squareup.moshi:moshi-kotlin:$version"
+    }
+
+    //  https://mvnrepository.com/artifact/com.squareup.retrofit2
+    object Retrofit {
+        private const val version = "2.9.0"
+
+        //  https://mvnrepository.com/artifact/com.squareup.retrofit2/retrofit
+        const val retrofit = "com.squareup.retrofit2:retrofit:$version"
+
+        //  https://mvnrepository.com/artifact/com.squareup.retrofit2/converter-moshi
+        const val converterMoshi = "com.squareup.retrofit2:converter-moshi:$version"
+    }
+
     //  https://mvnrepository.com/artifact/org.robolectric
     object Robolectric {
         private const val version = "4.4"

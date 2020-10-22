@@ -10,3 +10,6 @@ project(":ui").projectDir = File("modules/ui")
 
 include(":application")
 project(":application").projectDir = File("modules/application")
+
+include(":data")
+project(":data").projectDir = File("modules/data")

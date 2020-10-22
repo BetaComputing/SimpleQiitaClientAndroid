@@ -2,6 +2,7 @@ dependencies {
     implementation(project(":common"))
     implementation(project(":ui"))
     implementation(project(":application"))
+    implementation(project(":data"))
 
     implementation(Dependencies.Kotlin.stdlib)
     implementation(Dependencies.Kotlin.Coroutines.core)
