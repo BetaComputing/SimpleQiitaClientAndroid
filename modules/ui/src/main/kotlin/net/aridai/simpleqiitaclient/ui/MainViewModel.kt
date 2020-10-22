@@ -1,12 +1,15 @@
 package net.aridai.simpleqiitaclient.ui
 
 import androidx.lifecycle.*
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import net.aridai.simpleqiitaclient.application.article.ArticleSearchRequest
+import net.aridai.simpleqiitaclient.application.article.ArticleSearchResponse
+import net.aridai.simpleqiitaclient.application.article.ArticleSearchUseCase
 import net.aridai.simpleqiitaclient.ui.article.Article
-import timber.log.Timber
 
-internal class MainViewModel : ViewModel() {
+internal class MainViewModel(
+    private val articleSearchUseCase: ArticleSearchUseCase
+) : ViewModel() {
 
     //  取得中かどうか
     private val isFetching: MutableLiveData<Boolean> = MutableLiveData(false)
@@ -41,12 +44,18 @@ internal class MainViewModel : ViewModel() {
 
     //  検索を行う。
     private suspend fun search(keyword: String) {
-        //  TODO: 検索処理
-        Timber.d("検索: $keyword")
-        delay(1000L)
+        val request = ArticleSearchRequest(keyword)
 
-        val dummyList = List(size = 20) { Article.DUMMY }
-        this._articleList.value = dummyList
+        when (val response = this.articleSearchUseCase.execute(request)) {
+            is ArticleSearchResponse.Success -> {
+                val newArticleList = response.articles.map(ArticleDtoConverter::convert)
+                this._articleList.value = newArticleList
+            }
+
+            is ArticleSearchResponse.Failure -> {
+                //  TODO: Snackbarでも表示するか?
+            }
+        }
 
         this.isFetching.value = false
     }

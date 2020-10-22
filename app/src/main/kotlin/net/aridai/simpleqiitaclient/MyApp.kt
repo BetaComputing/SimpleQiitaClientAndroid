@@ -8,6 +8,7 @@ import org.koin.core.context.startKoin
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import timber.log.Timber
+import net.aridai.simpleqiitaclient.application.Application as ApplicationModule
 
 internal class MyApp : Application() {
     override fun onCreate() {
@@ -25,6 +26,7 @@ internal class MyApp : Application() {
                     single(named("VERSION_NAME")) { BuildConfig.VERSION_NAME }
                 },
                 Ui.koinModule,
+                ApplicationModule.koinModule,
             )
         }
     }

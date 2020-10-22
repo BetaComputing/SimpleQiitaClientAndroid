@@ -6,6 +6,6 @@ import org.koin.dsl.module
 
 object Ui {
     val koinModule: Module = module {
-        viewModel { MainViewModel() }
+        viewModel { MainViewModel(articleSearchUseCase = get()) }
     }
 }
