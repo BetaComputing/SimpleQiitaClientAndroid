@@ -1,3 +1,5 @@
+# masterへのpush/PRのタイミングでビルドを行います。
+
 name: CI
 
 on:
