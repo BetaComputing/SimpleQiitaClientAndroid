@@ -14,6 +14,9 @@ dependencies {
     implementation(Dependencies.Koin.coreExt)
     implementation(Dependencies.Koin.androidXExt)
     implementation(Dependencies.Koin.viewModel)
+    implementation(Dependencies.flexbox)
+    implementation(Dependencies.glide)
     implementation(Dependencies.material)
+    implementation(Dependencies.threeTenAbp)
     implementation(Dependencies.timber)
 }

@@ -97,11 +97,23 @@ object Dependencies {
         const val robolectric = "org.robolectric:robolectric:$version"
     }
 
+    //  https://mvnrepository.com/artifact/com.google.android/flexbox
+    const val flexbox = "com.google.android:flexbox:2.0.1"
+
+    //  https://mvnrepository.com/artifact/com.github.bumptech.glide/glide
+    const val glide = "com.github.bumptech.glide:glide:4.11.0"
+
     //  https://mvnrepository.com/artifact/com.squareup.leakcanary/leakcanary-android
     const val leakCanary = "com.squareup.leakcanary:leakcanary-android:2.5"
 
     //  https://mvnrepository.com/artifact/com.google.android.material/material
     const val material = "com.google.android.material:material:1.2.1"
+
+    //  https://mvnrepository.com/artifact/com.jakewharton.threetenabp/threetenabp
+    const val threeTenAbp = "com.jakewharton.threetenabp:threetenabp:1.2.4"
+
+    //  https://mvnrepository.com/artifact/org.threeten/threetenbp
+    const val threeTenBp = "org.threeten:threetenbp:1.4.5"
 
     //  https://mvnrepository.com/artifact/com.jakewharton.timber/timber
     const val timber = "com.jakewharton.timber:timber:4.7.1"
