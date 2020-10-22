@@ -20,6 +20,15 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include layout="@layout/article_view" />
+
+        </LinearLayout>
+
     </LinearLayout>
 
 </layout>

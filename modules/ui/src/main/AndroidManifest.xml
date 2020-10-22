@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="net.aridai.simpleqiitaclient.ui">
 
-    <application android:theme="@style/Theme.MyTheme">
+    <application
+        android:supportsRtl="false"
+        android:theme="@style/Theme.MyTheme">
 
         <activity android:name=".MainActivity">
             <intent-filter>
