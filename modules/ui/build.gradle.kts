@@ -1,3 +1,5 @@
+plugins { kotlin("kapt") }
+
 dependencies {
     implementation(project(":common"))
 
