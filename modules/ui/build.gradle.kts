@@ -22,4 +22,13 @@ dependencies {
     implementation(Dependencies.material)
     implementation(Dependencies.threeTenAbp)
     implementation(Dependencies.timber)
+
+    testImplementation(Dependencies.Kotlin.Coroutines.test)
+    testImplementation(Dependencies.AndroidX.Test.coreKtx)
+    testImplementation(Dependencies.Robolectric.robolectric)
+    testImplementation(Dependencies.junit)
+    testImplementation(Dependencies.mockK)
+    testImplementation(Dependencies.threeTenBp) {
+        exclude(Dependencies.threeTenAbp)
+    }
 }

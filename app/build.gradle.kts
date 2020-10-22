@@ -18,13 +18,4 @@ dependencies {
     debugImplementation(Dependencies.Hyperion.sharedPreferences)
     debugImplementation(Dependencies.Hyperion.timber)
     debugImplementation(Dependencies.leakCanary)
-
-    testImplementation(Dependencies.Kotlin.Coroutines.test)
-    testImplementation(Dependencies.AndroidX.Test.coreKtx)
-    testImplementation(Dependencies.Robolectric.robolectric)
-    testImplementation(Dependencies.junit)
-    testImplementation(Dependencies.mockK)
-    testImplementation(Dependencies.threeTenBp) {
-        exclude(Dependencies.threeTenAbp)
-    }
 }
