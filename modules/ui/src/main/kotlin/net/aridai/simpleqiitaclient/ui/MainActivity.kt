@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.main_activity.*
+import net.aridai.simpleqiitaclient.common.observeEvent
 import net.aridai.simpleqiitaclient.ui.article.Article
 import net.aridai.simpleqiitaclient.ui.article.ArticleClickedListener
 import net.aridai.simpleqiitaclient.ui.article.tag.TagClickedListener
@@ -35,6 +37,7 @@ internal class MainActivity : AppCompatActivity(), ArticleClickedListener, TagCl
 
         this.articleList.adapter = this.adapter
         this.viewModel.articleList.observe(this, this::updateArticleList)
+        this.viewModel.failedEvent.observeEvent(this) { this.showSnackbar() }
     }
 
     override fun onArticleClicked(article: Article) {
@@ -56,6 +59,10 @@ internal class MainActivity : AppCompatActivity(), ArticleClickedListener, TagCl
     private fun launchUrl(url: String) {
         val uri = Uri.parse(url)
         this.startActivity(Intent(Intent.ACTION_VIEW, uri))
+    }
+
+    private fun showSnackbar() {
+        Snackbar.make(this.outerLayout, R.string.search_failure_message, Snackbar.LENGTH_SHORT).show()
     }
 
     private inner class Adapter(private val parent: MainActivity = this) : RecyclerView.Adapter<BindingHolder>() {

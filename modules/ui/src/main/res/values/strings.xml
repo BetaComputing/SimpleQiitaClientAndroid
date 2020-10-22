@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="search_button">検索</string>
+    <string name="search_failure_message">取得に失敗しました。</string>
     <string name="likes_count">x %d</string>
     <string name="created_at_pattern">yyyy/MM/dd HH:mm:ss</string>
 </resources>

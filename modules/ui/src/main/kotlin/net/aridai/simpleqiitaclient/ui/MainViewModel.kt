@@ -5,6 +5,9 @@ import kotlinx.coroutines.launch
 import net.aridai.simpleqiitaclient.application.article.ArticleSearchRequest
 import net.aridai.simpleqiitaclient.application.article.ArticleSearchResponse
 import net.aridai.simpleqiitaclient.application.article.ArticleSearchUseCase
+import net.aridai.simpleqiitaclient.common.LiveEvent
+import net.aridai.simpleqiitaclient.common.MutableLiveEvent
+import net.aridai.simpleqiitaclient.common.publish
 import net.aridai.simpleqiitaclient.ui.article.Article
 
 internal class MainViewModel(
@@ -33,6 +36,10 @@ internal class MainViewModel(
     //  プログレスバーを表示するかどうか
     val isProgressBarVisible: LiveData<Boolean> = this.isFetching
 
+    //  検索が失敗したことを通知するイベント
+    private val _failedEvent = MutableLiveEvent<Unit>()
+    val failedEvent: LiveEvent<Unit> = this._failedEvent
+
     //  検索ボタンがクリックされたとき。
     fun onSearchButtonClicked() {
         this.isFetching.value = true
@@ -53,7 +60,7 @@ internal class MainViewModel(
             }
 
             is ArticleSearchResponse.Failure -> {
-                //  TODO: Snackbarでも表示するか?
+                this._failedEvent.publish(Unit)
             }
         }
 
