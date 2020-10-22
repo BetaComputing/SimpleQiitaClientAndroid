@@ -2,6 +2,7 @@ package net.aridai.simpleqiitaclient
 
 import android.app.Application
 import com.jakewharton.threetenabp.AndroidThreeTen
+import net.aridai.simpleqiitaclient.data.Data
 import net.aridai.simpleqiitaclient.ui.Ui
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -27,6 +28,7 @@ internal class MyApp : Application() {
                 },
                 Ui.koinModule,
                 ApplicationModule.koinModule,
+                Data.koinModule,
             )
         }
     }
