@@ -2,6 +2,7 @@ package net.aridai.simpleqiitaclient
 
 import android.app.Application
 import com.jakewharton.threetenabp.AndroidThreeTen
+import net.aridai.simpleqiitaclient.ui.Ui
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import org.koin.core.qualifier.named
@@ -22,7 +23,8 @@ internal class MyApp : Application() {
                     single(named("DEBUG")) { BuildConfig.DEBUG }
                     single(named("VERSION_CODE")) { BuildConfig.VERSION_CODE }
                     single(named("VERSION_NAME")) { BuildConfig.VERSION_NAME }
-                }
+                },
+                Ui.koinModule,
             )
         }
     }
