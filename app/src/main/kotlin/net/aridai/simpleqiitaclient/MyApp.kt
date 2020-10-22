@@ -1,6 +1,7 @@
 package net.aridai.simpleqiitaclient
 
 import android.app.Application
+import com.jakewharton.threetenabp.AndroidThreeTen
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import org.koin.core.qualifier.named
@@ -11,6 +12,7 @@ internal class MyApp : Application() {
     override fun onCreate() {
         super.onCreate()
 
+        AndroidThreeTen.init(this)
         Timber.plant(Timber.DebugTree())
 
         startKoin {
