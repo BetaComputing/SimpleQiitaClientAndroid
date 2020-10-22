@@ -2,6 +2,7 @@ plugins { kotlin("kapt") }
 
 dependencies {
     implementation(project(":common"))
+    implementation(project(":application"))
 
     implementation(Dependencies.Kotlin.stdlib)
     implementation(Dependencies.Kotlin.Coroutines.core)
