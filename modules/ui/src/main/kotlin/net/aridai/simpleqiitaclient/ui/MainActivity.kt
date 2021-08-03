@@ -5,7 +5,10 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.getSystemService
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
@@ -21,6 +24,8 @@ import java.net.URLEncoder
 
 internal class MainActivity : AppCompatActivity(), ArticleClickedListener, TagClickedListener {
 
+    private lateinit var inputMethodManager: InputMethodManager
+
     private val viewModel: MainViewModel by viewModel()
     private lateinit var binding: MainActivityBinding
 
@@ -28,6 +33,8 @@ internal class MainActivity : AppCompatActivity(), ArticleClickedListener, TagCl
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        this.inputMethodManager = this.getSystemService()!!
 
         DataBindingUtil.setContentView<MainActivityBinding>(this, R.layout.main_activity).also {
             this.binding = it
@@ -38,6 +45,17 @@ internal class MainActivity : AppCompatActivity(), ArticleClickedListener, TagCl
         this.articleList.adapter = this.adapter
         this.viewModel.articleList.observe(this, this::updateArticleList)
         this.viewModel.failedEvent.observeEvent(this) { this.showSnackbar() }
+        this.viewModel.keyboardHiddenRequestEvent.observe(this) {
+            this.inputMethodManager.hideSoftInputFromWindow(this.binding.root.windowToken, 0)
+        }
+
+        //  入力フィールドのアクションが発生したとき。
+        this.binding.keywordEditText.setOnEditorActionListener { _, actionId, _ ->
+            when (actionId) {
+                EditorInfo.IME_ACTION_SEARCH -> this.viewModel.onSearchButtonClicked().let { true }
+                else -> false
+            }
+        }
     }
 
     override fun onArticleClicked(article: Article) {

@@ -40,19 +40,23 @@ internal class MainViewModel(
     private val _failedEvent = MutableLiveEvent<Unit>()
     val failedEvent: LiveEvent<Unit> = this._failedEvent
 
+    //  キーボードの非表示を要求するイベント
+    private val _keyboardHiddenRequestEvent = MutableLiveEvent<Unit>()
+    val keyboardHiddenRequestEvent: LiveEvent<Unit> = this._keyboardHiddenRequestEvent
+
     //  検索ボタンがクリックされたとき。
     fun onSearchButtonClicked() {
-        this.isFetching.value = true
+        this._keyboardHiddenRequestEvent.publish(Unit)
 
-        this.let { vm ->
-            vm.viewModelScope.launch { vm.search(keyword = vm.keyword.value!!) }
-        }
+        val keyword = this.keyword.value!!
+        this.viewModelScope.launch { this@MainViewModel.search(keyword) }
     }
 
     //  検索を行う。
     private suspend fun search(keyword: String) {
-        val request = ArticleSearchRequest(keyword)
+        this.isFetching.value = true
 
+        val request = ArticleSearchRequest(keyword)
         when (val response = this.articleSearchUseCase.execute(request)) {
             is ArticleSearchResponse.Success -> {
                 val newArticleList = response.articles.map(ArticleDtoConverter::convert)
