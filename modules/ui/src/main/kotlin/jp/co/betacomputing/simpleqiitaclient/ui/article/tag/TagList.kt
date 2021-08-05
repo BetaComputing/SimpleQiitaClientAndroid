@@ -1,5 +1,6 @@
 package jp.co.betacomputing.simpleqiitaclient.ui.article.tag
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
@@ -11,7 +12,6 @@ import com.google.android.flexbox.FlexboxLayout
 import com.google.android.flexbox.FlexboxLayoutManager
 import jp.co.betacomputing.simpleqiitaclient.ui.R
 import jp.co.betacomputing.simpleqiitaclient.ui.databinding.TagBinding
-import kotlinx.android.synthetic.main.tag_list.view.*
 
 internal class TagList @JvmOverloads constructor(
     context: Context,
@@ -23,13 +23,15 @@ internal class TagList @JvmOverloads constructor(
     private val adapter = Adapter(this)
 
     init {
-        LayoutInflater.from(this.context).inflate(R.layout.tag_list, this, true)
+        val view = LayoutInflater.from(this.context).inflate(R.layout.tag_list, this, true)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
 
         val layoutManager = FlexboxLayoutManager(this.context, FlexDirection.ROW)
-        this.recyclerView.layoutManager = layoutManager
-        this.recyclerView.adapter = this.adapter
+        recyclerView.layoutManager = layoutManager
+        recyclerView.adapter = this.adapter
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     internal fun setTags(tags: List<String>) {
         this.adapter.tags = tags
         this.adapter.notifyDataSetChanged()

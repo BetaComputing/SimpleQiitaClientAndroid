@@ -1,5 +1,13 @@
 plugins { kotlin("kapt") }
 
+android {
+    lintOptions {
+        xmlReport = true
+        isAbortOnError = true
+        setDisable(setOf("ObsoleteLintCustomCheck", "MediaCapabilities", "UnusedResources", "NullSafeMutableLiveData"))
+    }
+}
+
 dependencies {
     implementation(Dependencies.Kotlin.stdlib)
     implementation(Dependencies.Kotlin.Coroutines.core)
