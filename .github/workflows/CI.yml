@@ -1,20 +1,16 @@
-# masterへのpush/PRのタイミングでビルドを行います。
-
 name: CI
 
 on:
   push:
-    branches: [ master ]
+    branches:
+      - master
     paths-ignore:
-      - docs/**
-      - README.md
-      - LICENSE
+      - '*.md'
+      - 'LICENSE'
+
   pull_request:
-    branches: [ master ]
-    paths-ignore:
-      - docs/**
-      - README.md
-      - LICENSE
+    branches:
+      - master
 
 jobs:
   prepare:
@@ -40,7 +36,6 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
-
       - name: Build
         run: ./gradlew assembleDebug
 
@@ -48,17 +43,28 @@ jobs:
         run: ./gradlew testDebugUnitTest
 
       - name: Lint
+        if: ${{ github.event_name != 'pull_request' }}
         run: ./gradlew lintDebug ktlintCheck
+        continue-on-error: false
+
+      - name: Lint and Report
+        if: ${{ github.event_name == 'pull_request' }}
+        run: ./gradlew lintDebug
+        continue-on-error: true
+
+      - name: ktlint and Report
+        if: ${{ github.event_name == 'pull_request' }}
+        run: ./gradlew ktlintCheck
+        continue-on-error: true
 
       - name: Setup Ruby
         uses: actions/setup-ruby@v1
-        if: github.ref != 'refs/heads/master'
+        if: ${{ github.event_name == 'pull_request' }}
         with:
           ruby-version: '2.6'
-          architecture: 'x64'
 
       - name: Run Danger
-        if: github.ref != 'refs/heads/master'
+        if: ${{ github.event_name == 'pull_request' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
