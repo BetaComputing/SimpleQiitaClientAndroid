@@ -4,4 +4,6 @@
     <string name="search_failure_message">取得に失敗しました。</string>
     <string name="likes_count">x %d</string>
     <string name="created_at_pattern">yyyy/MM/dd HH:mm:ss</string>
+    <string name="initial_message">キーワードを入力して検索を行ってください。</string>
+    <string name="empty_message">検索結果が0件でした。</string>
 </resources>

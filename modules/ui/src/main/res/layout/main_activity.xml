@@ -20,6 +20,7 @@
         android:orientation="vertical"
         tools:context=".MainActivity">
 
+        <!-- アプリバー -->
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -36,10 +37,12 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <!-- 検索用コントール部分 -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+                <!-- キーワード入力フィールド -->
                 <EditText
                     android:id="@+id/keywordEditText"
                     android:layout_width="0dp"
@@ -58,6 +61,7 @@
                     app:layout_constraintRight_toLeftOf="@id/searchButton"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <!-- 検索ボタン -->
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/searchButton"
                     android:layout_width="wrap_content"
@@ -73,19 +77,57 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <ProgressBar
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:indeterminate="true"
-                android:visibility="@{viewModel.isProgressBarVisible ? View.VISIBLE : View.INVISIBLE}" />
+                android:layout_height="match_parent">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/articleList"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scrollbars="vertical"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                <!-- プログレスバー -->
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="true"
+                    android:visibility="@{viewModel.isProgressBarVisible ? View.VISIBLE : View.GONE, default=`gone`}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!-- リスト部分 -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/articleList"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:scrollbars="vertical"
+                    android:visibility="@{viewModel.isProgressBarVisible ? View.GONE: View.VISIBLE}"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!-- 初期メッセージ -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/initial_message"
+                    android:visibility="@{viewModel.isInitialMessageVisible ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!-- 空メッセージ -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/empty_message"
+                    android:visibility="@{viewModel.isEmptyMessageVisible ? View.VISIBLE : View.GONE, default=`gone`}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
 

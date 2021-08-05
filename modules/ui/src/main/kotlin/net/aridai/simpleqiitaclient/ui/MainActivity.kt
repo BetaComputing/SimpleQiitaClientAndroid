@@ -1,5 +1,6 @@
 package net.aridai.simpleqiitaclient.ui
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -69,8 +70,9 @@ internal class MainActivity : AppCompatActivity(), ArticleClickedListener, TagCl
         this.launchUrl(url)
     }
 
-    private fun updateArticleList(newList: List<Article>) {
-        this.adapter.articleList = newList
+    @SuppressLint("NotifyDataSetChanged")
+    private fun updateArticleList(newList: List<Article>?) {
+        this.adapter.articleList = newList ?: emptyList()
         this.adapter.notifyDataSetChanged()
     }
 
