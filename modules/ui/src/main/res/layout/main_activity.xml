@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="net.aridai.simpleqiitaclient.ui.MainViewModel" />
+            type="jp.co.betacomputing.simpleqiitaclient.ui.MainViewModel" />
 
     </data>
 
