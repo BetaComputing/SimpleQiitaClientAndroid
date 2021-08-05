@@ -95,16 +95,16 @@ internal class MainViewModelTest {
     @Test
     fun `test検索ボタンを押すとキーボードが非表示になるはず`() {
         //  何もしていないときはキーボード非表示要求は一度も発火していないはず。
-        verify(exactly = 0) { mockKeyboardHiddenRequestEventObserver.onChanged(any()) }
+        verify(exactly = 0) { mockKeyboardHiddenRequestEventObserver.onChanged(Unit) }
 
         //  検索ボタンを押すとキーボード非表示要求が投げられるはず。
         viewModel.onSearchButtonClicked()
-        verify(exactly = 1) { mockKeyboardHiddenRequestEventObserver.onChanged(any()) }
+        verify(exactly = 1) { mockKeyboardHiddenRequestEventObserver.onChanged(Unit) }
 
         //  何かしらの検索キーワードを入力していても非表示要求が投げられるはず。
         viewModel.keyword.value = "なにかしらの検索"
         viewModel.onSearchButtonClicked()
-        verify(exactly = 2) { mockKeyboardHiddenRequestEventObserver.onChanged(any()) }
+        verify(exactly = 2) { mockKeyboardHiddenRequestEventObserver.onChanged(Unit) }
     }
 
     @Test
@@ -159,7 +159,7 @@ internal class MainViewModelTest {
         Assert.assertEquals(false, viewModel.isProgressBarVisible.value)
         Assert.assertEquals(true, viewModel.isInitialMessageVisible.value)
         Assert.assertEquals(false, viewModel.isEmptyMessageVisible.value)
-        verify(exactly = 0) { mockFailedEventObserver.onChanged(any()) }
+        verify(exactly = 0) { mockFailedEventObserver.onChanged(Unit) }
 
         //  検索キーワードを適当に入れて検索を処理を掛ける。
         //  処理はそのまま完了させる。
@@ -171,7 +171,7 @@ internal class MainViewModelTest {
         Assert.assertEquals(false, viewModel.isProgressBarVisible.value)
         Assert.assertEquals(false, viewModel.isInitialMessageVisible.value)
         Assert.assertEquals(false, viewModel.isEmptyMessageVisible.value)
-        verify(exactly = 0) { mockFailedEventObserver.onChanged(any()) }
+        verify(exactly = 0) { mockFailedEventObserver.onChanged(Unit) }
     }
 
     @Test
@@ -184,7 +184,7 @@ internal class MainViewModelTest {
         Assert.assertEquals(false, viewModel.isProgressBarVisible.value)
         Assert.assertEquals(true, viewModel.isInitialMessageVisible.value)
         Assert.assertEquals(false, viewModel.isEmptyMessageVisible.value)
-        verify(exactly = 0) { mockFailedEventObserver.onChanged(any()) }
+        verify(exactly = 0) { mockFailedEventObserver.onChanged(Unit) }
 
         //  検索キーワードを適当に入れて検索を処理を掛ける。
         //  処理はそのまま完了させる。
@@ -196,7 +196,7 @@ internal class MainViewModelTest {
         Assert.assertEquals(false, viewModel.isProgressBarVisible.value)
         Assert.assertEquals(false, viewModel.isInitialMessageVisible.value)
         Assert.assertEquals(true, viewModel.isEmptyMessageVisible.value)
-        verify(exactly = 0) { mockFailedEventObserver.onChanged(any()) }
+        verify(exactly = 0) { mockFailedEventObserver.onChanged(Unit) }
     }
 
     @Test
@@ -208,7 +208,7 @@ internal class MainViewModelTest {
         Assert.assertEquals(false, viewModel.isProgressBarVisible.value)
         Assert.assertEquals(true, viewModel.isInitialMessageVisible.value)
         Assert.assertEquals(false, viewModel.isEmptyMessageVisible.value)
-        verify(exactly = 0) { mockFailedEventObserver.onChanged(any()) }
+        verify(exactly = 0) { mockFailedEventObserver.onChanged(Unit) }
 
         //  検索キーワードを適当に入れて検索を処理を掛ける。
         //  処理はそのまま完了させる。
@@ -220,7 +220,7 @@ internal class MainViewModelTest {
         Assert.assertEquals(false, viewModel.isProgressBarVisible.value)
         Assert.assertEquals(true, viewModel.isInitialMessageVisible.value)
         Assert.assertEquals(false, viewModel.isEmptyMessageVisible.value)
-        verify(exactly = 1) { mockFailedEventObserver.onChanged(any()) }
+        verify(exactly = 1) { mockFailedEventObserver.onChanged(Unit) }
     }
 
     @Test
@@ -262,7 +262,7 @@ internal class MainViewModelTest {
         Assert.assertEquals(false, viewModel.isProgressBarVisible.value)
         Assert.assertEquals(true, viewModel.isInitialMessageVisible.value)
         Assert.assertEquals(false, viewModel.isEmptyMessageVisible.value)
-        verify(exactly = 1) { mockFailedEventObserver.onChanged(any()) }
+        verify(exactly = 1) { mockFailedEventObserver.onChanged(Unit) }
 
         //  2回目の検索を行う。
         viewModel.keyword.value = keyword2
@@ -273,7 +273,7 @@ internal class MainViewModelTest {
         Assert.assertEquals(false, viewModel.isProgressBarVisible.value)
         Assert.assertEquals(false, viewModel.isInitialMessageVisible.value)
         Assert.assertEquals(false, viewModel.isEmptyMessageVisible.value)
-        verify(exactly = 1) { mockFailedEventObserver.onChanged(any()) }
+        verify(exactly = 1) { mockFailedEventObserver.onChanged(Unit) }
 
         //  3回目の検索を行う。
         viewModel.keyword.value = keyword3
@@ -284,7 +284,7 @@ internal class MainViewModelTest {
         Assert.assertEquals(false, viewModel.isProgressBarVisible.value)
         Assert.assertEquals(false, viewModel.isInitialMessageVisible.value)
         Assert.assertEquals(true, viewModel.isEmptyMessageVisible.value)
-        verify(exactly = 1) { mockFailedEventObserver.onChanged(any()) }
+        verify(exactly = 1) { mockFailedEventObserver.onChanged(Unit) }
 
         //  4回目の検索を行う。
         viewModel.keyword.value = keyword4
@@ -295,7 +295,7 @@ internal class MainViewModelTest {
         Assert.assertEquals(false, viewModel.isProgressBarVisible.value)
         Assert.assertEquals(true, viewModel.isInitialMessageVisible.value)
         Assert.assertEquals(false, viewModel.isEmptyMessageVisible.value)
-        verify(exactly = 2) { mockFailedEventObserver.onChanged(any()) }
+        verify(exactly = 2) { mockFailedEventObserver.onChanged(Unit) }
 
         //  5回目の検索を行う。
         viewModel.keyword.value = keyword5
@@ -305,7 +305,7 @@ internal class MainViewModelTest {
         Assert.assertEquals(false, viewModel.isProgressBarVisible.value)
         Assert.assertEquals(false, viewModel.isInitialMessageVisible.value)
         Assert.assertEquals(false, viewModel.isEmptyMessageVisible.value)
-        verify(exactly = 2) { mockFailedEventObserver.onChanged(any()) }
+        verify(exactly = 2) { mockFailedEventObserver.onChanged(Unit) }
     }
 
     private fun createMockUseCases() {

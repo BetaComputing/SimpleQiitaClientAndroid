@@ -19,7 +19,6 @@ import jp.co.betacomputing.simpleqiitaclient.ui.article.ArticleClickedListener
 import jp.co.betacomputing.simpleqiitaclient.ui.article.tag.TagClickedListener
 import jp.co.betacomputing.simpleqiitaclient.ui.databinding.ArticleViewBinding
 import jp.co.betacomputing.simpleqiitaclient.ui.databinding.MainActivityBinding
-import kotlinx.android.synthetic.main.main_activity.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.net.URLEncoder
 
@@ -43,7 +42,7 @@ internal class MainActivity : AppCompatActivity(), ArticleClickedListener, TagCl
             it.viewModel = this.viewModel
         }
 
-        this.articleList.adapter = this.adapter
+        this.binding.articleList.adapter = this.adapter
         this.viewModel.articleList.observe(this, this::updateArticleList)
         this.viewModel.failedEvent.observeEvent(this) { this.showSnackbar() }
         this.viewModel.keyboardHiddenRequestEvent.observe(this) {
@@ -82,7 +81,7 @@ internal class MainActivity : AppCompatActivity(), ArticleClickedListener, TagCl
     }
 
     private fun showSnackbar() {
-        Snackbar.make(this.outerLayout, R.string.search_failure_message, Snackbar.LENGTH_SHORT).show()
+        Snackbar.make(this.binding.outerLayout, R.string.search_failure_message, Snackbar.LENGTH_SHORT).show()
     }
 
     private inner class Adapter(private val parent: MainActivity = this) : RecyclerView.Adapter<BindingHolder>() {

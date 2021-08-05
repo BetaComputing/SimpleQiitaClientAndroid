@@ -1,18 +1,19 @@
+import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
 
 plugins {
-    id("org.jlleitschuh.gradle.ktlint") version "9.4.1"
-    id("com.github.ben-manes.versions") version "0.33.0"
+    id("org.jlleitschuh.gradle.ktlint") version "10.1.0"
+    id("com.github.ben-manes.versions") version "0.39.0"
 }
 
 buildscript {
     repositories {
         google()
-        jcenter()
         mavenCentral()
     }
+
     dependencies {
-        classpath("com.android.tools.build:gradle:${Project.ideVersion}")
+        classpath("com.android.tools.build:gradle:${Project.agpVersion}")
         classpath(kotlin("gradle-plugin", version = Project.kotlinVersion))
     }
 }
@@ -20,7 +21,6 @@ buildscript {
 allprojects {
     repositories {
         google()
-        jcenter()
         mavenCentral()
     }
 
@@ -29,7 +29,6 @@ allprojects {
     ktlint {
         android.set(true)
         outputColorName.set("RED")
-        ignoreFailures.set(true)
         disabledRules.set(listOf("import-ordering", "no-wildcard-imports"))
         reporters { reporter(ReporterType.CHECKSTYLE) }
     }
@@ -40,7 +39,6 @@ subprojects {
 
     apply(plugin = if (isAppModule) "com.android.application" else "com.android.library")
     apply(plugin = "org.jetbrains.kotlin.android")
-    apply(plugin = "org.jetbrains.kotlin.android.extensions")
 
     android {
         compileSdkVersion(Project.compileSdkVersion)
@@ -48,12 +46,13 @@ subprojects {
 
         defaultConfig {
             if (isAppModule) applicationId = Project.applicationId
-            targetSdkVersion(Project.targetSdkVersion)
-            minSdkVersion(Project.minSdkVersion)
+            targetSdk = Project.targetSdkVersion
+            minSdk = Project.minSdkVersion
             versionCode = Project.versionCode
             versionName = Project.versionName
         }
 
+        buildFeatures.viewBinding = true
         buildFeatures.dataBinding = true
         testOptions.unitTests.isIncludeAndroidResources = true
 
@@ -85,12 +84,21 @@ subprojects {
 
         lintOptions {
             xmlReport = true
-            isAbortOnError = false
-            setDisable(setOf("ObsoleteLintCustomCheck"))
+            isAbortOnError = true
+            setDisable(setOf("ObsoleteLintCustomCheck", "NullSafeMutableLiveData"))
         }
     }
 }
 
 task<Delete>("clean") {
     delete(rootProject.buildDir)
+}
+
+tasks.named("dependencyUpdates", DependencyUpdatesTask::class).configure {
+    fun String.isStable() = Regex("^[0-9,.v-]+(-r)?$").matches(this)
+    fun String.isNotStable() = this.isStable().not()
+
+    rejectVersionIf {
+        currentVersion.isStable() && candidate.version.isNotStable()
+    }
 }

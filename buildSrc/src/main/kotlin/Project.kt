@@ -5,7 +5,7 @@ object Project {
     const val compileSdkVersion = 30
     const val minSdkVersion = 24
     const val targetSdkVersion = 30
-    const val buildToolsVersion = "30.0.2"
-    val ideVersion: String = System.getProperty("ideVersion")
+    const val buildToolsVersion = "30.0.3"
+    val agpVersion: String = System.getProperty("agpVersion")
     val kotlinVersion: String = System.getProperty("kotlinVersion")
 }

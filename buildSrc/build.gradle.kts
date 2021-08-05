@@ -3,18 +3,19 @@ import org.jetbrains.kotlin.konan.properties.loadProperties
 plugins { `kotlin-dsl` }
 
 repositories {
-    jcenter()
+    mavenCentral()
     google()
 }
 
 val properties = loadProperties(File(projectDir.parent, "gradle.properties").path)
-val ideVersion = properties["android.ideVersion"].toString()
+val agpVersion = properties["agpVersion"].toString()
 val kotlinVersion = properties["kotlin.version"].toString()
 
+System.setProperty("agpVersion", agpVersion)
 System.setProperty("kotlinVersion", kotlinVersion)
-System.setProperty("ideVersion", ideVersion)
 
 dependencies {
-    implementation("com.android.tools.build:gradle:$ideVersion")
+    implementation("com.android.tools.build:gradle:$agpVersion")
     implementation(kotlin("gradle-plugin", version = kotlinVersion))
+    implementation(kotlin("stdlib", version = kotlinVersion))
 }
