@@ -9,7 +9,7 @@
 
         <variable
             name="listener"
-            type="net.aridai.simpleqiitaclient.ui.article.tag.TagClickedListener" />
+            type="jp.co.betacomputing.simpleqiitaclient.ui.article.tag.TagClickedListener" />
 
     </data>
 

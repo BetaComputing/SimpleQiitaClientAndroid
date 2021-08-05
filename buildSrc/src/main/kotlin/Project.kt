@@ -1,5 +1,5 @@
 object Project {
-    const val applicationId = "net.aridai.simpleqiitaclient"
+    const val applicationId = "jp.co.betacomputing.simpleqiitaclient"
     const val versionCode = 1
     const val versionName = "1.0.0"
     const val compileSdkVersion = 30

@@ -6,19 +6,19 @@
 
         <import
             alias="Converter"
-            type="net.aridai.simpleqiitaclient.ui.article.ArticleViewConverter" />
+            type="jp.co.betacomputing.simpleqiitaclient.ui.article.ArticleViewConverter" />
 
         <variable
             name="article"
-            type="net.aridai.simpleqiitaclient.ui.article.Article" />
+            type="jp.co.betacomputing.simpleqiitaclient.ui.article.Article" />
 
         <variable
             name="articleClickeListener"
-            type="net.aridai.simpleqiitaclient.ui.article.ArticleClickedListener" />
+            type="jp.co.betacomputing.simpleqiitaclient.ui.article.ArticleClickedListener" />
 
         <variable
             name="tagClickedListener"
-            type="net.aridai.simpleqiitaclient.ui.article.tag.TagClickedListener" />
+            type="jp.co.betacomputing.simpleqiitaclient.ui.article.tag.TagClickedListener" />
 
     </data>
 
@@ -58,7 +58,7 @@
                     android:textColor="#000"
                     android:textSize="16sp" />
 
-                <net.aridai.simpleqiitaclient.ui.article.tag.TagList
+                <jp.co.betacomputing.simpleqiitaclient.ui.article.tag.TagList
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="8dp"
