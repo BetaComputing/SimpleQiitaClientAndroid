@@ -22,7 +22,7 @@ import jp.co.betacomputing.simpleqiitaclient.ui.databinding.MainActivityBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.net.URLEncoder
 
-internal class MainActivity : AppCompatActivity(), ArticleClickedListener, TagClickedListener {
+   internal class MainActivity : AppCompatActivity(), ArticleClickedListener, TagClickedListener {
 
     private lateinit var inputMethodManager: InputMethodManager
 
@@ -108,3 +108,6 @@ internal class MainActivity : AppCompatActivity(), ArticleClickedListener, TagCl
 
     private class BindingHolder(val binding: ArticleViewBinding) : RecyclerView.ViewHolder(binding.root)
 }
+
+ class BadClass(val x: Int,
+val y:String)
