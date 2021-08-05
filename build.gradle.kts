@@ -85,7 +85,7 @@ subprojects {
         lintOptions {
             xmlReport = true
             isAbortOnError = true
-            setDisable(setOf("ObsoleteLintCustomCheck", "NullSafeMutableLiveData"))
+            setDisable(setOf("ObsoleteLintCustomCheck", "MediaCapabilities", "NullSafeMutableLiveData"))
         }
     }
 }

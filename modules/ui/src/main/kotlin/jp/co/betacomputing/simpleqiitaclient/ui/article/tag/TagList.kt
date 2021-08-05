@@ -1,5 +1,6 @@
 package jp.co.betacomputing.simpleqiitaclient.ui.article.tag
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
@@ -30,6 +31,7 @@ internal class TagList @JvmOverloads constructor(
         recyclerView.adapter = this.adapter
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     internal fun setTags(tags: List<String>) {
         this.adapter.tags = tags
         this.adapter.notifyDataSetChanged()
