@@ -8,7 +8,17 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
+import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.*
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.content.getSystemService
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -54,6 +64,12 @@ internal class MainActivity : AppCompatActivity(), ArticleClickedListener, TagCl
             when (actionId) {
                 EditorInfo.IME_ACTION_SEARCH -> this.viewModel.onSearchButtonClicked().let { true }
                 else -> false
+            }
+        }
+
+        this.setContent {
+            MaterialTheme {
+                MainActivityContent()
             }
         }
     }
@@ -107,4 +123,27 @@ internal class MainActivity : AppCompatActivity(), ArticleClickedListener, TagCl
     }
 
     private class BindingHolder(val binding: ArticleViewBinding) : RecyclerView.ViewHolder(binding.root)
+}
+
+@Composable
+private fun MainActivityContent() {
+    Scaffold(
+        topBar = { TopAppBar(title = { Text(stringResource(R.string.app_name)) }) }
+    ) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
+            modifier = Modifier.fillMaxSize(),
+        ) {
+            Text("Hello World!")
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun MainActivityContentPreview() {
+    MaterialTheme {
+        MainActivityContent()
+    }
 }

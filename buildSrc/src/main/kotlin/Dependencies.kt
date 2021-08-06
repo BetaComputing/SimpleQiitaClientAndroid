@@ -32,8 +32,53 @@ object Dependencies {
         //  https://mvnrepository.com/artifact/androidx.core/core-ktx
         const val coreKtx = "androidx.core:core-ktx:1.6.0"
 
+        //  https://mvnrepository.com/artifact/androidx.activity/activity-compose
+        const val activityCompose = "androidx.activity:activity-compose:1.3.1"
+
         //  https://mvnrepository.com/artifact/androidx.fragment/fragment-ktx
         const val fragmentKtx = "androidx.fragment:fragment-ktx:1.3.6"
+
+        //  https://mvnrepository.com/artifact/androidx.compose
+        object Compose {
+            private const val version = Project.composeVersion
+
+            //  https://mvnrepository.com/artifact/androidx.compose.ui
+            object UI {
+
+                //  https://mvnrepository.com/artifact/androidx.compose.ui/ui
+                const val ui = "androidx.compose.ui:ui:$version"
+
+                //  https://mvnrepository.com/artifact/androidx.compose.ui/ui-tooling
+                const val tooling = "androidx.compose.ui:ui-tooling:$version"
+            }
+
+            //  https://mvnrepository.com/artifact/androidx.compose.foundation
+            object Foundation {
+
+                //  https://mvnrepository.com/artifact/androidx.compose.foundation/foundation
+                const val foundation = "androidx.compose.foundation:foundation:$version"
+            }
+
+            //  https://mvnrepository.com/artifact/androidx.compose.material
+            object Material {
+
+                // https://mvnrepository.com/artifact/androidx.compose.material/material
+                const val material = "androidx.compose.material:material:$version"
+
+                //  https://mvnrepository.com/artifact/androidx.compose.material/material-icons-core
+                const val iconsCore = "androidx.compose.material:material-icons-core:$version"
+            }
+
+            //  https://mvnrepository.com/artifact/androidx.compose.runtime
+            object Runtime {
+
+                //  https://mvnrepository.com/artifact/androidx.compose.runtime/runtime
+                const val runtime = "androidx.compose.runtime:runtime:$version"
+
+                //  https://mvnrepository.com/artifact/androidx.compose.runtime/runtime-livedata
+                const val liveData = "androidx.compose.runtime:runtime-livedata:$version"
+            }
+        }
 
         //  https://mvnrepository.com/artifact/androidx.lifecycle
         object Lifecycle {

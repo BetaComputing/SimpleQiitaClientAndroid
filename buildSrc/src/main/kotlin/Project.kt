@@ -8,4 +8,5 @@ object Project {
     const val buildToolsVersion = "30.0.3"
     val agpVersion: String = System.getProperty("agpVersion")
     val kotlinVersion: String = System.getProperty("kotlinVersion")
+    const val composeVersion = "1.0.1"
 }
