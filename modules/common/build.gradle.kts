@@ -16,7 +16,6 @@ dependencies {
     implementation(Dependencies.AndroidX.coreKtx)
     implementation(Dependencies.AndroidX.Lifecycle.liveDataKtx)
     implementation(Dependencies.Koin.coreExt)
-    implementation(Dependencies.glide)
     implementation(Dependencies.material)
     implementation(Dependencies.timber)
 

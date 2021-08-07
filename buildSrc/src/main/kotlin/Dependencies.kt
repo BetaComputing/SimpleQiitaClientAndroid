@@ -103,6 +103,22 @@ object Dependencies {
         }
     }
 
+    //  https://mvnrepository.com/artifact/com.google.accompanist
+    object Accompanist {
+        private const val version = "0.16.0"
+
+        //  https://mvnrepository.com/artifact/com.google.accompanist/accompanist-flowlayout
+        const val flowLayout = "com.google.accompanist:accompanist-flowlayout:$version"
+    }
+
+    //  https://mvnrepository.com/artifact/io.coil-kt
+    object Coil {
+        private const val version = "1.3.2"
+
+        //  https://mvnrepository.com/artifact/io.coil-kt/coil-compose
+        const val compose = "io.coil-kt:coil-compose:$version"
+    }
+
     //  https://mvnrepository.com/artifact/com.willowtreeapps.hyperion
     object Hyperion {
         private const val version = "0.9.33"
@@ -162,12 +178,6 @@ object Dependencies {
         //  https://mvnrepository.com/artifact/org.robolectric/robolectric
         const val robolectric = "org.robolectric:robolectric:$version"
     }
-
-    //  https://mvnrepository.com/artifact/com.google.android.flexbox/flexbox
-    const val flexbox = "com.google.android.flexbox:flexbox:3.0.0"
-
-    //  https://mvnrepository.com/artifact/com.github.bumptech.glide/glide
-    const val glide = "com.github.bumptech.glide:glide:4.12.0"
 
     //  https://mvnrepository.com/artifact/com.squareup.leakcanary/leakcanary-android
     const val leakCanary = "com.squareup.leakcanary:leakcanary-android:2.7"

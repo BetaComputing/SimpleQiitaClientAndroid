@@ -93,13 +93,11 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <!-- リスト部分 -->
-                <androidx.recyclerview.widget.RecyclerView
+                <androidx.compose.ui.platform.ComposeView
                     android:id="@+id/articleList"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:scrollbars="vertical"
                     android:visibility="@{viewModel.isProgressBarVisible ? View.GONE: View.VISIBLE}"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
