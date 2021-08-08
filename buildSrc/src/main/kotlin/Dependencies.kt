@@ -26,9 +26,6 @@ object Dependencies {
         //  https://mvnrepository.com/artifact/androidx.appcompat/appcompat
         const val appcompat = "androidx.appcompat:appcompat:1.3.1"
 
-        //  https://mvnrepository.com/artifact/androidx.constraintlayout/constraintlayout
-        const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.1.0"
-
         //  https://mvnrepository.com/artifact/androidx.core/core-ktx
         const val coreKtx = "androidx.core:core-ktx:1.6.0"
 
@@ -78,6 +75,16 @@ object Dependencies {
                 //  https://mvnrepository.com/artifact/androidx.compose.runtime/runtime-livedata
                 const val liveData = "androidx.compose.runtime:runtime-livedata:$version"
             }
+        }
+
+        //  https://mvnrepository.com/artifact/androidx.constraintlayout
+        object ConstraintLayout {
+
+            //  https://mvnrepository.com/artifact/androidx.constraintlayout/constraintlayout
+            const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.1.0"
+
+            //  https://mvnrepository.com/artifact/androidx.constraintlayout/constraintlayout-compose
+            const val compose = "androidx.constraintlayout:constraintlayout-compose:1.0.0-beta02"
         }
 
         //  https://mvnrepository.com/artifact/androidx.lifecycle

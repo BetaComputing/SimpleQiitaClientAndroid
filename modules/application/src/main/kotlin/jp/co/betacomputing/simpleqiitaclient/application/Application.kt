@@ -8,5 +8,6 @@ import org.koin.dsl.module
 object Application {
     val koinModule: Module = module {
         factory<ArticleSearchUseCase> { ArticleSearchInteractor(queryService = get()) }
+        factory { QiitaTagPageProvider() }
     }
 }
