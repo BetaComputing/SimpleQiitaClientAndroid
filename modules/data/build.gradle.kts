@@ -11,4 +11,6 @@ dependencies {
     implementation(Dependencies.Retrofit.retrofit)
     implementation(Dependencies.threeTenAbp)
     implementation(Dependencies.timber)
+
+    compileOnly(Dependencies.AndroidX.Compose.UI.tooling)
 }

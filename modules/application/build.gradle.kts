@@ -5,4 +5,6 @@ dependencies {
     implementation(Dependencies.Koin.coreExt)
     implementation(Dependencies.threeTenAbp)
     implementation(Dependencies.timber)
+
+    compileOnly(Dependencies.AndroidX.Compose.UI.tooling)
 }

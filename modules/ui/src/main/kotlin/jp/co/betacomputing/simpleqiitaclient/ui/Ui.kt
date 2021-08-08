@@ -6,6 +6,11 @@ import org.koin.dsl.module
 
 object Ui {
     val koinModule: Module = module {
-        viewModel { MainViewModel(articleSearchUseCase = get()) }
+        viewModel {
+            MainViewModel(
+                articleSearchUseCase = get(),
+                tagPageProvider = get(),
+            )
+        }
     }
 }

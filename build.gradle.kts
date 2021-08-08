@@ -54,6 +54,7 @@ subprojects {
 
         buildFeatures.viewBinding = true
         buildFeatures.dataBinding = true
+        buildFeatures.compose = true
         testOptions.unitTests.isIncludeAndroidResources = true
 
         sourceSets {
@@ -80,6 +81,10 @@ subprojects {
 
         kotlinOptions {
             jvmTarget = JavaVersion.VERSION_1_8.toString()
+        }
+
+        composeOptions {
+            kotlinCompilerExtensionVersion = Project.composeVersion
         }
 
         lintOptions {

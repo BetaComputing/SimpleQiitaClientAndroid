@@ -19,4 +19,6 @@ dependencies {
     debugImplementation(Dependencies.Hyperion.sharedPreferences)
     debugImplementation(Dependencies.Hyperion.timber)
     debugImplementation(Dependencies.leakCanary)
+
+    compileOnly(Dependencies.AndroidX.Compose.UI.tooling)
 }

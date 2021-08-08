@@ -3,6 +3,7 @@ package jp.co.betacomputing.simpleqiitaclient.ui
 import android.os.Build
 import androidx.lifecycle.Observer
 import io.mockk.*
+import jp.co.betacomputing.simpleqiitaclient.application.QiitaTagPageProvider
 import jp.co.betacomputing.simpleqiitaclient.application.article.ArticleSearchResponse
 import jp.co.betacomputing.simpleqiitaclient.application.article.ArticleSearchUseCase
 import jp.co.betacomputing.simpleqiitaclient.application.article.ArticleSnapshot
@@ -315,7 +316,10 @@ internal class MainViewModelTest {
     }
 
     private fun createViewModel() {
-        viewModel = MainViewModel(mockArticleSearchUseCase)
+        viewModel = MainViewModel(
+            mockArticleSearchUseCase,
+            QiitaTagPageProvider(),
+        )
     }
 
     private fun observeProperties() {
